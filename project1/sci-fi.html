@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sci-Fi Books List</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+             background: url('https://png.pngtree.com/background/20230403/original/pngtree-sci-fi-scene-illustration-picture-image_2269860.jpg') no-repeat center center fixed;
+            background-size: cover;
+
+         /* Color between #5C4033 and #D2B48C */
+            color: #000000; /* Black text color */
+        }
+        .hidden {
+            display: none;
+        }
+        .list-group-item {
+            background-color: #ffffff; /* White background for list items */
+        }
+        .btn-outline-danger, .btn-outline-secondary {
+            border-color: #333; /* Darker border color for buttons */
+        }
+        .btn-outline-danger:hover, .btn-outline-secondary:hover {
+            background-color: #333; /* Darker background color on hover */
+            color: #fff; /* White text color on hover */
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            min-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Sci-Fi Books List</h1>
+
+        <!-- Search Form -->
+        <form class="form-inline mb-4" id="searchForm">
+            <input class="form-control mr-2" type="search" placeholder="Search by Book Name" aria-label="Search" id="searchBookName">
+            <input class="form-control mr-2" type="search" placeholder="Search by Author Name" aria-label="Search" id="searchAuthorName">
+            <button class="btn btn-outline-success" type="button" onclick="searchBooks()">Search</button>
+        </form>
+
+        <!-- Books List -->
+        <div class="list-group" id="booksList">
+            <!-- Book Item 1 -->
+            <div class="list-group-item book-item" data-book-name="Dune" data-author-name="Frank Herbert" data-description="Dune is a science fiction novel about the desert planet Arrakis and the struggle for control over its valuable spice. It explores themes of politics, religion, and ecology.">
+                <h5 class="mb-1 book-title">Dune</h5>
+                <p class="mb-1">Author: Frank Herbert</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/0441013597" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/dune/p/itm97b8e2f8b91b2" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://fliphtml5.com/cwdun/jrza/basic" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Dune(Sci-Fi)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Dune(Sci-Fi)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 2 -->
+            <div class="list-group-item book-item" data-book-name="Neuromancer" data-author-name="William Gibson" data-description="Neuromancer is a seminal cyberpunk novel about a washed-up computer hacker hired for one last job. It explores themes of artificial intelligence, cyberspace, and corporate control.">
+                <h5 class="mb-1 book-title">Neuromancer</h5>
+                <p class="mb-1">Author: William Gibson</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/0441569595" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/neuromancer/p/itmdyt3jghdz4zuu" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://d-pdf.com/book/3978/read" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Neuromancer(Sci-Fi)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Neuromancer(Sci-Fi)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 3 -->
+            <div class="list-group-item book-item" data-book-name="Foundation" data-author-name="Isaac Asimov" data-description="Foundation is a science fiction novel about a group of scientists who attempt to preserve knowledge as the Galactic Empire crumbles. It explores themes of history, politics, and social science.">
+                <h5 class="mb-1 book-title">Foundation</h5>
+                <p class="mb-1">Author: Isaac Asimov</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/0553293354" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/foundation/p/itmf6zwvuykfbvch" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://s3.us-west-1.wasabisys.com/luminist/EB/A/Asimov%20-%20Foundation.pdf" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Foundation(Sci-Fi)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Foundation(Sci-Fi)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Add more book items as needed -->
+
+        </div>
+    </div>
+
+    <!-- Toast Component -->
+    <div class="toast" id="hoverToast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="15000">
+        <div class="toast-header">
+            <strong class="mr-auto">Book Info</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body" id="toastBody">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.add-to-favorites').hover(function () {
+                const bookItem = $(this).closest('.book-item');
+                const bookName = bookItem.data('book-name');
+                const authorName = bookItem.data('author-name');
+                const description = bookItem.data('description');
+
+                const toastBody = `
+                    <strong>Book Name:</strong> ${bookName}<br>
+                    <strong>Author:</strong> ${authorName}<br>
+                    <strong>Description:</strong> ${description}
+                `;
+                $('#toastBody').html(toastBody);
+                $('#hoverToast').toast('show');
+            }, function () {
+                setTimeout(function () {
+                    $('#hoverToast').toast('hide');
+                }, 15000); // 15 seconds
+            });
+        });
+
+        function searchBooks() {
+            const bookName = $('#searchBookName').val().toLowerCase();
+            const authorName = $('#searchAuthorName').val().toLowerCase();
+
+            $('.book-item').each(function () {
+                const itemBookName = $(this).data('book-name').toLowerCase();
+                const itemAuthorName = $(this).data('author-name').toLowerCase();
+
+                if ((bookName && itemBookName.includes(bookName)) || (authorName && itemAuthorName.includes(authorName))) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

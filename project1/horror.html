@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books List</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+           	    background: url('https://www.creativefabrica.com/wp-content/uploads/2022/12/07/Graphic-Of-Book-Cover-Frame-Border-With-Ivy-High-Quality-50962566-1.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #333; /* Darker text color for contrast */
+        }
+        .hidden {
+            display: none;
+        }
+        .list-group-item {
+            background-color:#f0f0f0; /* White background for list items */
+        }
+        .btn-outline-danger, .btn-outline-secondary {
+            border-color: #333; /* Darker border color for buttons */
+        }
+        .btn-outline-danger:hover, .btn-outline-secondary:hover {
+            background-color: #333; /* Darker background color on hover */
+            color: #fff; /* White text color on hover */
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            min-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Books List</h1>
+
+        <!-- Search Form -->
+        <form class="form-inline mb-4" id="searchForm">
+            <input class="form-control mr-2" type="search" placeholder="Search by Book Name" aria-label="Search" id="searchBookName">
+            <input class="form-control mr-2" type="search" placeholder="Search by Author Name" aria-label="Search" id="searchAuthorName">
+            <button class="btn btn-outline-success" type="button" onclick="searchBooks()">Search</button>
+        </form>
+
+        <!-- Books List -->
+        <div class="list-group" id="booksList">
+            <!-- Book Item 1 -->
+            <div class="list-group-item book-item" data-book-name="Dracula" data-author-name="Bram Stoker" data-description="Dracula by Bram Stoker is a Gothic horror novel about Count Dracula's attempt to move from Transylvania to England, where he battles against a group determined to stop his reign of terror. This classic tale of suspense and supernatural intrigue has captivated readers since its publication in 1897.">
+                <h5 class="mb-1">Dracula</h5>
+                <p class="mb-1">Author: Bram Stoker</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Dracula(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Dracula(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 2 -->
+            <div class="list-group-item book-item" data-book-name="Frankenstein" data-author-name="Mary Shelley" data-description="Frankenstein by Mary Shelley tells the story of Victor Frankenstein, a scientist who creates a sapient creature in an unorthodox scientific experiment. The novel explores themes of ambition, science, and the quest for glory, as well as the dangers of playing God.">
+                <h5 class="mb-1">Frankenstein</h5>
+                <p class="mb-1">Author: Mary Shelley</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Frankenstein(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Frankenstein(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 3 -->
+            <div class="list-group-item book-item" data-book-name="The Shining" data-author-name="Stephen King" data-description="The Shining by Stephen King is a horror novel that follows Jack Torrance, an aspiring writer and recovering alcoholic who accepts a position as the off-season caretaker of the historic Overlook Hotel. The story delves into themes of isolation, madness, and the supernatural.">
+                <h5 class="mb-1">The Shining</h5>
+                <p class="mb-1">Author: Stephen King</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="The Shining(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="The Shining(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 4 -->
+            <div class="list-group-item book-item" data-book-name="It" data-author-name="Stephen King" data-description="It by Stephen King is a horror novel that tells the story of a group of children who are terrorized by a shape-shifting entity that takes the form of a clown named Pennywise. The novel explores themes of friendship, trauma, and the battle between good and evil.">
+                <h5 class="mb-1">It</h5>
+                <p class="mb-1">Author: Stephen King</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="It(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="It(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 5 -->
+            <div class="list-group-item book-item" data-book-name="The Haunting of Hill House" data-author-name="Shirley Jackson" data-description="The Haunting of Hill House by Shirley Jackson is a classic haunted house story that follows four individuals who come to stay at the notoriously haunted Hill House. The novel delves into themes of fear, isolation, and the power of the human mind.">
+                <h5 class="mb-1">The Haunting of Hill House</h5>
+                <p class="mb-1">Author: Shirley Jackson</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="The Haunting of Hill House(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="The Haunting of Hill House(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 6 -->
+            <div class="list-group-item book-item" data-book-name="Pet Sematary" data-author-name="Stephen King" data-description="Pet Sematary by Stephen King is a horror novel about a family that moves to a rural home and discovers a mysterious burial ground behind their house. The story explores themes of death, grief, and the consequences of defying nature.">
+                <h5 class="mb-1">Pet Sematary</h5>
+                <p class="mb-1">Author: Stephen King</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Pet Sematary(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Pet Sematary(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 7 -->
+            <div class="list-group-item book-item" data-book-name="The Exorcist" data-author-name="William Peter Blatty" data-description="The Exorcist by William Peter Blatty is a horror novel that tells the story of a young girl possessed by a demon and the two priests who try to save her through an exorcism. The novel explores themes of faith, evil, and the battle between good and evil.">
+                <h5 class="mb-1">The Exorcist</h5>
+                <p class="mb-1">Author: William Peter Blatty</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="The Exorcist(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="The Exorcist(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 8 -->
+            <div class="list-group-item book-item" data-book-name="Bird Box" data-author-name="Josh Malerman" data-description="Bird Box by Josh Malerman is a post-apocalyptic horror novel that follows a woman and her two children as they navigate a world where mysterious entities cause people to go insane and commit suicide if they look at them. The novel explores themes of fear, survival, and motherhood.">
+                <h5 class="mb-1">Bird Box</h5>
+                <p class="mb-1">Author: Josh Malerman</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Bird Box(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Bird Box(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 9 -->
+            <div class="list-group-item book-item" data-book-name="House of Leaves" data-author-name="Mark Z. Danielewski" data-description="House of Leaves by Mark Z. Danielewski is a horror novel that tells the story of a family that moves into a house that is impossibly larger on the inside than it is on the outside. The novel is known for its unconventional format and explores themes of fear, madness, and the nature of reality.">
+                <h5 class="mb-1">House of Leaves</h5>
+                <p class="mb-1">Author: Mark Z. Danielewski</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="House of Leaves(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="House of Leaves(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 10 -->
+            <div class="list-group-item book-item" data-book-name="The Silence of the Lambs" data-author-name="Thomas Harris" data-description="The Silence of the Lambs by Thomas Harris is a psychological horror novel that follows FBI trainee Clarice Starling as she seeks the help of imprisoned cannibalistic serial killer Dr. Hannibal Lecter to catch another serial killer. The novel explores themes of fear, power, and the nature of evil.">
+                <h5 class="mb-1">The Silence of the Lambs</h5>
+                <p class="mb-1">Author: Thomas Harris</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="The Silence of the Lambs(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="The Silence of the Lambs(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 11 -->
+            <div class="list-group-item book-item" data-book-name="The Amityville Horror" data-author-name="Jay Anson" data-description="The Amityville Horror by Jay Anson is a horror novel based on the alleged real-life experiences of the Lutz family, who experienced terrifying paranormal events in their home in Amityville, New York. The novel explores themes of fear, evil, and the supernatural.">
+                <h5 class="mb-1">The Amityville Horror</h5>
+                <p class="mb-1">Author: Jay Anson</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="The Amityville Horror(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="The Amityville Horror(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 12 -->
+            <div class="list-group-item book-item" data-book-name="Salem's Lot" data-author-name="Stephen King" data-description="Salem's Lot by Stephen King is a horror novel that tells the story of a writer who returns to his hometown, only to discover that the residents are turning into vampires. The novel explores themes of fear, evil, and the battle between good and evil.">
+                <h5 class="mb-1">Salem's Lot</h5>
+                <p class="mb-1">Author: Stephen King</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Salem's Lot(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Salem's Lot(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 13 -->
+            <div class="list-group-item book-item" data-book-name="The Call of Cthulhu" data-author-name="H.P. Lovecraft" data-description="The Call of Cthulhu by H.P. Lovecraft is a horror short story that introduces the Cthulhu Mythos, a universe filled with ancient cosmic entities and eldritch horrors. The story explores themes of fear, madness, and the insignificance of humanity in the face of cosmic forces.">
+                <h5 class="mb-1">The Call of Cthulhu</h5>
+                <p class="mb-1">Author: H.P. Lovecraft</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="The Call of Cthulhu(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="The Call of Cthulhu(Horror)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed p-3" id="toastContainer" style="bottom: 0; right: 0;">
+        <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="mr-auto">Book Description</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body" id="toastBody">
+                Description goes here.
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.add-to-favorites').hover(function() {
+                const bookItem = $(this).closest('.book-item');
+                const description = bookItem.data('description');
+
+                $('#toastBody').text(description);
+                $('#toast').toast({
+                    delay: 15000
+                });
+                $('#toast').toast('show');
+            }, function() {
+                // Uncomment the next line if you want the toast to hide when the mouse leaves the button.
+                // $('#toast').toast('hide');
+            });
+        });
+
+        function searchBooks() {
+            const searchBookName = $('#searchBookName').val().toLowerCase();
+            const searchAuthorName = $('#searchAuthorName').val().toLowerCase();
+
+            $('.book-item').each(function() {
+                const bookName = $(this).data('book-name').toLowerCase();
+                const authorName = $(this).data('author-name').toLowerCase();
+
+                if (bookName.includes(searchBookName) && authorName.includes(searchAuthorName)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

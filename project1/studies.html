@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Books List</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+          
+            background: url('https://c8.alamy.com/comp/G12MN4/two-boys-reading-books-illustration-G12MN4.jpg') no-repeat center center fixed;
+            background-size: cover;
+
+         /* Color between #5C4033 and #D2B48C */
+            color: #000000; /* Black text color */
+        }
+        .hidden {
+            display: none;
+        }
+        .list-group-item {
+            background-color: #ffffff; /* White background for list items */
+        }
+        .btn-outline-danger, .btn-outline-secondary {
+            border-color: #333; /* Darker border color for buttons */
+        }
+        .btn-outline-danger:hover, .btn-outline-secondary:hover {
+            background-color: #333; /* Darker background color on hover */
+            color: #fff; /* White text color on hover */
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            min-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Study Books List</h1>
+
+        <!-- Search Form -->
+        <form class="form-inline mb-4" id="searchForm">
+            <input class="form-control mr-2" type="search" placeholder="Search by Book Name" aria-label="Search" id="searchBookName">
+            <input class="form-control mr-2" type="search" placeholder="Search by Author Name" aria-label="Search" id="searchAuthorName">
+            <button class="btn btn-outline-success" type="button" onclick="searchBooks()">Search</button>
+        </form>
+
+        <!-- Books List -->
+        <div class="list-group" id="booksList">
+            <!-- Book Item 1 -->
+            <div class="list-group-item book-item" data-book-name="Introduction to Algorithms" data-author-name="Thomas H. Cormen" data-description="Introduction to Algorithms provides a comprehensive introduction to the modern study of computer algorithms.">
+                <h5 class="mb-1 book-title">Introduction to Algorithms</h5>
+                <p class="mb-1">Author: Thomas H. Cormen</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/0262033844" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/introduction-to-algorithms/p/itmfc8w5yptg7rkg" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://dl.ebooksworld.ir/books/Introduction.to.Algorithms.4th.Leiserson.Stein.Rivest.Cormen.MIT.Press.9780262046305.EBooksWorld.ir.pdf" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Introduction to Algorithms(Study)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Introduction to Algorithms(Study)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 2 -->
+            <div class="list-group-item book-item" data-book-name="Effective Java" data-author-name="Joshua Bloch" data-description="Effective Java is a programming book that provides best practices and design patterns for writing efficient, maintainable Java code.">
+                <h5 class="mb-1 book-title">Effective Java</h5>
+                <p class="mb-1">Author: Joshua Bloch</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/0134685997" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/effective-java/p/itmfczf2hhwvh9yp" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com/search?q=Effective+Java+pdf" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Effective Java(Study)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Effective Java(Study)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 3 -->
+            <div class="list-group-item book-item" data-book-name="The C Programming Language" data-author-name="Brian W. Kernighan, Dennis M. Ritchie" data-description="The C Programming Language is a comprehensive guide to the C programming language, written by its creators.">
+                <h5 class="mb-1 book-title">The C Programming Language</h5>
+                <p class="mb-1">Author: Brian W. Kernighan, Dennis M. Ritchie</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/0131103628" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/the-c-programming-language/p/itmevz7zehxbrta3" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com/search?q=The+C+Programming+Language+pdf" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="The C Programming Language(Study)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="The C Programming Language(Study)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 4 -->
+            <div class="list-group-item book-item" data-book-name="C++ Programming Language" data-author-name="Bjarne Stroustrup" data-description="C++ Programming Language is a comprehensive guide to C++ programming, written by the language's creator.">
+                <h5 class="mb-1 book-title">C++ Programming Language</h5>
+                <p class="mb-1">Author: Bjarne Stroustrup</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/0321563840" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/c-programming-language/p/itmdyt3jghdz4zuu" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com/search?q=C++Programming+Language+pdf" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="C++ Programming Language(Study)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="C++ Programming Language(Study)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 5 -->
+            <div class="list-group-item book-item" data-book-name="Python Crash Course" data-author-name="Eric Matthes" data-description="Python Crash Course is a fast-paced, thorough introduction to programming with Python, designed for beginners.">
+                <h5 class="mb-1 book-title">Python Crash Course</h5>
+                <p class="mb-1">Author: Eric Matthes</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/1593279280" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/python-crash-course/p/itm7b4a52c7eae89" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.academia.edu/29103371/python_crash_course_pdf" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Python Crash Course(Study)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Python Crash Course(Study)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 6 -->
+            <div class="list-group-item book-item" data-book-name="Machine Learning" data-author-name="Tom M. Mitchell" data-description="Machine Learning is a foundational text in the field of machine learning, providing comprehensive coverage of the key concepts and techniques.">
+                <h5 class="mb-1 book-title">Machine Learning</h5>
+                <p class="mb-1">Author: Tom M. Mitchell</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/0070428077" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/machine-learning/p/itmcb0b9e4cf4f62" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com/search?q=Machine+Learning+Tom+M.+Mitchell+pdf" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Machine Learning(Study)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Machine Learning(Study)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Additional book items -->
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="mr-auto">Book Description</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body" id="toastDescription"></div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.add-to-favorites').on('mouseenter', function() {
+                var bookItem = $(this).closest('.book-item');
+                var description = bookItem.data('description');
+                $('#toastDescription').text(description);
+                $('.toast').toast({
+                    delay: 15000 // 15 seconds
+                });
+                $('.toast').toast('show');
+            });
+
+            $('.add-to-favorites').on('mouseleave', function() {
+                $('.toast').toast('hide');
+            });
+        });
+
+        function searchBooks() {
+            var searchBookName = $('#searchBookName').val().toLowerCase();
+            var searchAuthorName = $('#searchAuthorName').val().toLowerCase();
+
+            $('.book-item').each(function() {
+                var bookName = $(this).data('book-name').toLowerCase();
+                var authorName = $(this).data('author-name').toLowerCase();
+
+                if (bookName.includes(searchBookName) && authorName.includes(searchAuthorName)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

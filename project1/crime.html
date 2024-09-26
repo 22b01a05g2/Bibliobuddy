@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Books List</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+             background: url('https://thumbs.dreamstime.com/b/judge-gavel-law-books-court-law-justice-background-concept-judge-gavel-law-books-court-law-justice-273067313.jpg') no-repeat center center fixed;
+            background-size: cover;
+
+         /* Color between #5C4033 and #D2B48C */
+            color: #000000; /* Black text color */
+        }
+        .hidden {
+            display: none;
+        }
+        .list-group-item {
+            background-color: #ffffff; /* White background for list items */
+        }
+        .btn-outline-danger, .btn-outline-secondary {
+            border-color: #333; /* Darker border color for buttons */
+        }
+        .btn-outline-danger:hover, .btn-outline-secondary:hover {
+            background-color: #333; /* Darker background color on hover */
+            color: #fff; /* White text color on hover */
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            min-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Crime Books List</h1>
+
+        <!-- Search Form -->
+        <form class="form-inline mb-4" id="searchForm">
+            <input class="form-control mr-2" type="search" placeholder="Search by Book Name" aria-label="Search" id="searchBookName">
+            <input class="form-control mr-2" type="search" placeholder="Search by Author Name" aria-label="Search" id="searchAuthorName">
+            <button class="btn btn-outline-success" type="button" onclick="searchBooks()">Search</button>
+        </form>
+
+        <!-- Books List -->
+        <div class="list-group" id="booksList">
+            <!-- Book Item 1 -->
+            <div class="list-group-item book-item" data-book-name="The Godfather" data-author-name="Mario Puzo" data-description="The Godfather is a crime novel that focuses on the powerful and influential Corleone crime family. It explores themes of power, loyalty, and family dynamics in the world of organized crime.">
+                <h5 class="mb-1 book-title">The Godfather</h5>
+                <p class="mb-1">Author: Mario Puzo</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/0452282156" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/the-godfather/p/itmf3n5m6syhmzyb" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com/search?q=The+Godfather+pdf" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="The Godfather(Crime)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="The Godfather(Crime)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 2 -->
+            <div class="list-group-item book-item" data-book-name="Gone Girl" data-author-name="Gillian Flynn" data-description="Gone Girl is a psychological thriller about a woman who goes missing on her fifth wedding anniversary, and her husband becomes the prime suspect. The novel explores themes of deception, media influence, and marriage.">
+                <h5 class="mb-1 book-title">Gone Girl</h5>
+                <p class="mb-1">Author: Gillian Flynn</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/0307588378" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/gone-girl/p/itm1f8c9ed7a3e8b" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com/search?q=Gone+Girl+pdf" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Gone Girl(Crime)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Gone Girl(Crime)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 3 -->
+            <div class="list-group-item book-item" data-book-name="The Girl with the Dragon Tattoo" data-author-name="Stieg Larsson" data-description="The Girl with the Dragon Tattoo is a crime novel about a journalist and a hacker who investigate a wealthy family's dark secrets. It involves a missing person case that reveals a complex web of corruption and violence.">
+                <h5 class="mb-1 book-title">The Girl with the Dragon Tattoo</h5>
+                <p class="mb-1">Author: Stieg Larsson</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/0307454541" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/the-girl-with-the-dragon-tattoo/p/itmf2f4b6f3z8d8b" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com/search?q=The+Girl+with+the+Dragon+Tattoo+pdf" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="The Girl with the Dragon Tattoo(Crime)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="The Girl with the Dragon Tattoo(Crime)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Add more book items as needed -->
+
+        </div>
+    </div>
+
+    <!-- Toast Component -->
+    <div class="toast" id="hoverToast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="15000">
+        <div class="toast-header">
+            <strong class="mr-auto">Book Info</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body" id="toastBody">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.add-to-favorites').hover(function () {
+                const bookItem = $(this).closest('.book-item');
+                const bookName = bookItem.data('book-name');
+                const authorName = bookItem.data('author-name');
+                const description = bookItem.data('description');
+
+                const toastBody = `
+                    <strong>Book Name:</strong> ${bookName}<br
+
+>
+                    <strong>Author:</strong> ${authorName}<br>
+                    <strong>Description:</strong> ${description}
+                `;
+                $('#toastBody').html(toastBody);
+                $('#hoverToast').toast('show');
+            }, function () {
+                $('#hoverToast').toast('hide');
+            });
+        });
+
+        function searchBooks() {
+            const bookName = $('#searchBookName').val().toLowerCase();
+            const authorName = $('#searchAuthorName').val().toLowerCase();
+
+            $('.book-item').each(function () {
+                const itemBookName = $(this).data('book-name').toLowerCase();
+                const itemAuthorName = $(this).data('author-name').toLowerCase();
+
+                if (itemBookName.includes(bookName) && itemAuthorName.includes(authorName)) {
+                    $(this).removeClass('hidden');
+                } else {
+                    $(this).addClass('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

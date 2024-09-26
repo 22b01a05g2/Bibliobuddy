@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://i.pinimg.com/originals/94/14/c4/9414c4c39ea1695c2f92d7cee5e53079.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: flex-start; /* Align items at the top */
+            justify-content: center;  /* Center items horizontally */
+        }
+        .registration-container {
+            max-width: 500px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 100px; /* Move it downwards */
+            margin-left: 750px; /* Move it to the right */
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-container">
+        <h2 class="text-center">Registration</h2>
+        <form id="registrationForm" method="post" action="register">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email ID</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                <div class="invalid-feedback">
+                    Please provide a valid email.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                <div class="invalid-feedback">
+                    Password must be at least 6 characters long and contain at least one special character and one number.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <div class="text-center mt-3">
+                <a href="login.html">Login</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById('name');
+            let email = document.getElementById('email');
+            let password = document.getElementById('password');
+            let phone = document.getElementById('phone');
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            let emailValid = emailPattern.test(email.value) && email.value.length > 10 && /[0-9]/.test(email.value) && /[a-zA-Z]/.test(email.value);
+            let passwordValid = password.value.length >= 6 && /[0-9]/.test(password.value) && /[!@#$%^&*(),.?":{}|<>]/.test(password.value);
+            let phonePattern = /^\d{10}$/;
+
+            if (!emailValid) {
+                email.classList.add('is-invalid');
+            } else {
+                email.classList.remove('is-invalid');
+            }
+
+            if (!passwordValid) {
+                password.classList.add('is-invalid');
+            } else {
+                password.classList.remove('is-invalid');
+            }
+
+            if (!phonePattern.test(phone.value)) {
+                phone.classList.add('is-invalid');
+            } else {
+                phone.classList.remove('is-invalid');
+            }
+
+            if (emailValid && passwordValid && phonePattern.test(phone.value)) {
+                this.submit(); // Submit the form if all validations pass
+            }
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

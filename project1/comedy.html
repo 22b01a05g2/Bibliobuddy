@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comedy Books List</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+                        background: url('https://www.shutterstock.com/image-vector/smileys-vector-background-yellow-emoticons-260nw-1068178037.jpg') no-repeat center center fixed;
+            background-size: cover;
+
+         /* Color between #5C4033 and #D2B48C */
+            color: #000000; /* Black text color */
+        }
+        .hidden {
+            display: none;
+        }
+        .list-group-item {
+            background-color: #f0f0f0; /* White background for list items */
+        }
+        .btn-outline-danger, .btn-outline-secondary {
+            border-color: #333; /* Darker border color for buttons */
+        }
+        .btn-outline-danger:hover, .btn-outline-secondary:hover {
+            background-color: #333; /* Darker background color on hover */
+            color: #fff; /* White text color on hover */
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            min-width: 300px;
+            z-index: 1050; /* Ensure toast appears on top */
+        }
+        .toast-body {
+            white-space: pre-wrap; /* Ensure new lines are preserved */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Comedy Books List</h1>
+
+        <!-- Search Form -->
+        <form class="form-inline mb-4" id="searchForm">
+            <input class="form-control mr-2" type="search" placeholder="Search by Book Name" aria-label="Search" id="searchBookName">
+            <input class="form-control mr-2" type="search" placeholder="Search by Author Name" aria-label="Search" id="searchAuthorName">
+            <button class="btn btn-outline-success" type="button" onclick="searchBooks()">Search</button>
+        </form>
+
+        <!-- Books List -->
+        <div class="list-group" id="booksList">
+            <!-- Book Item 1 -->
+            <div class="list-group-item book-item" data-book-name="Good Omens" data-author-name="Neil Gaiman, Terry Pratchett" data-description="Good Omens is a comedic novel about the birth of the son of Satan and the coming of the End Times. Aziraphale, an angel, and Crowley, a demon, team up to prevent the apocalypse.">
+                <h5 class="mb-1">Good Omens</h5>
+                <p class="mb-1">Author: Neil Gaiman, Terry Pratchett</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/0060853980" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/good-omens/p/itmdytf99fh3gejf" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com/search?q=Good+Omens+pdf" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Good Omens(Comedy)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites" 
+                                onmouseover="showToast('Good Omens is a comedic novel about the birth of the son of Satan and the coming of the End Times. Aziraphale, an angel, and Crowley, a demon, team up to prevent the apocalypse.')"
+                                onmouseout="hideToast()">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Good Omens(Comedy)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 2 -->
+            <div class="list-group-item book-item" data-book-name="The Hitchhiker's Guide to the Galaxy" data-author-name="Douglas Adams" data-description="The Hitchhiker's Guide to the Galaxy is a science fiction comedy series about Arthur Dent, an ordinary man who is swept off Earth just before it is demolished to make way for a galactic freeway.">
+                <h5 class="mb-1">The Hitchhiker's Guide to the Galaxy</h5>
+                <p class="mb-1">Author: Douglas Adams</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/0345391802" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/the-hitchhiker-s-guide-to-the-galaxy/p/itmept93hy8mhj6b" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com/search?q=The+Hitchhiker%27s+Guide+to+the+Galaxy+pdf" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="The Hitchhiker's Guide to the Galaxy(Comedy)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites" 
+                                onmouseover="showToast('The Hitchhiker\'s Guide to the Galaxy is a science fiction comedy series about Arthur Dent, an ordinary man who is swept off Earth just before it is demolished to make way for a galactic freeway.')"
+                                onmouseout="hideToast()">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="The Hitchhiker's Guide to the Galaxy(Comedy)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Book Item 3 -->
+            <div class="list-group-item book-item" data-book-name="Bossypants" data-author-name="Tina Fey" data-description="Bossypants is Tina Fey's autobiographical comedy book where she discusses her life, career, and the challenges she faced along the way, all with her trademark humor.">
+                <h5 class="mb-1">Bossypants</h5>
+                <p class="mb-1">Author: Tina Fey</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="https://www.amazon.com/dp/0316056898" target="_blank" class="btn btn-sm btn-primary">Amazon</a>
+                        <a href="https://www.flipkart.com/bossypants/p/itmfmewngq9gzqbh" target="_blank" class="btn btn-sm btn-warning">Flipkart</a>
+                        <a href="https://www.google.com/search?q=Bossypants+pdf" target="_blank" class="btn btn-sm btn-info">Online Link</a>
+                    </div>
+                    <form action="AddToFavoritesServlet" method="post" class="mb-0">
+                        <input type="hidden" name="bookName" value="Bossypants(Comedy)">
+                        <button type="submit" class="btn btn-sm btn-outline-danger add-to-favorites" 
+                                onmouseover="showToast('Bossypants is Tina Fey\'s autobiographical comedy book where she discusses her life, career, and the challenges she faced along the way, all with her trademark humor.')"
+                                onmouseout="hideToast()">
+                            <i class="fas fa-heart"></i> Add to Favorites
+                        </button>
+                    </form>
+                    <form action="DeleteFromFavoritesServlet" method="post">
+                        <input type="hidden" name="bookName" value="Bossypants(Comedy)">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2 delete-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Add more book items as needed -->
+
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="15000">
+        <div class="toast-body"></div>
+    </div>
+
+    <script>
+        function showToast(description) {
+            const toastElement = document.getElementById('toastContainer');
+            toastElement.querySelector('.toast-body').innerText = description;
+            $(toastElement).toast('show');
+        }
+
+        function hideToast() {
+            const toastElement = document.getElementById('toastContainer');
+            $(toastElement).toast('hide');
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
